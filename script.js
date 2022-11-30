@@ -15,19 +15,26 @@ form.addEventListener('submit', e => {
 const setError = (element, message) => {
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
+    const validoDisplay = inputControl.querySelector('.valido');
 
+    errorDisplay.innerText = ' ';
+    validoDisplay.innerText = ' ';
     errorDisplay.innerText = message;
     inputControl.classList.add('error');
     inputControl.classList.remove('valido')
 }
 
-const setSuccess = element => {
+const setSuccess = (element,message) => {
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
+    const validoDisplay = inputControl.querySelector('.valido');
 
-    errorDisplay.innerText = '';
-    inputControl.classList.add('valido');
+    errorDisplay.innerText = ' ';
+    validoDisplay.innerText = ' ';
+    validoDisplay.innerText = message;
     inputControl.classList.remove('error');
+    inputControl.classList.add('valido');
+    
 };
 
 const validarcorreo = email => {
@@ -60,7 +67,7 @@ const validateInputs = () => {
         setError(username, 'El usuario tiene que ser de 4 a 16 dígitos y solo puede contener números, letras y guión bajo')
     }
     else {
-        setSuccess(username);
+        setSuccess(username, '¡Datos Correctos!');
     }
 
     //validando nombre
@@ -70,7 +77,7 @@ const validateInputs = () => {
         setError(nombre, 'Ingrese un nombre válido')
     }
     else {
-        setSuccess(nombre);
+        setSuccess(nombre, '¡Datos Correctos!');
     }
 
     //validando correo
@@ -79,7 +86,7 @@ const validateInputs = () => {
     } else if (!validarcorreo(emailValue)) {
         setError(email, 'El correo debe ser uno válido');
     } else {
-        setSuccess(email);
+        setSuccess(email,'¡Datos Correctos!');
     }
 
     //validando celular
@@ -88,7 +95,7 @@ const validateInputs = () => {
     } else if (!validarcelular(celularValue)) {
         setError(celular, 'El número no es válido');
     } else {
-        setSuccess(celular);
+        setSuccess(celular,'¡Datos Correctos!');
     }
 
     //validando contraseña
@@ -97,7 +104,7 @@ const validateInputs = () => {
     } else if (passwordValue.length < 8 ) {
         setError(password, 'La contraseña debe tener al menos 8 dígitos')
     } else {
-        setSuccess(password);
+        setSuccess(password,'¡Datos Correctos!');
     }
 
     //validando contraseña repetida
@@ -106,7 +113,7 @@ const validateInputs = () => {
     } else if (password2Value !== passwordValue) {
         setError(password2, "Ambas contraseñas deben coincidir");
     } else {
-        setSuccess(password2);
+        setSuccess(password2,'¡Datos Correctos!');
     }
 
 };
